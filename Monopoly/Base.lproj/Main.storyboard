@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2ie-l4-X0s">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Настройка игры-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="SettingsViewController" customModule="Monopoly" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите количество игроков" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oRr-Ee-uPc">
+                                <rect key="frame" x="85" y="96" width="244" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IrY-fg-6fj">
+                                <rect key="frame" x="20" y="832" width="374" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z01-MD-hVs">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <state key="normal" title="Загрузить"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="или загрузите сохранённое состояние" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4g3-5H-C5I">
+                                <rect key="frame" x="52.5" y="117.5" width="309" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zDo-kx-T0n">
+                                <rect key="frame" x="20" y="146" width="374" height="678"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zDo-kx-T0n" secondAttribute="trailing" constant="20" id="1D8-58-xwY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IrY-fg-6fj" secondAttribute="bottom" id="3e3-9Q-d2k"/>
+                            <constraint firstItem="oRr-Ee-uPc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="6tX-hp-ALe"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4g3-5H-C5I" secondAttribute="trailing" priority="500" constant="20" id="8SC-5G-vp3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IrY-fg-6fj" secondAttribute="trailing" constant="20" id="BLL-c8-lRZ"/>
+                            <constraint firstItem="4g3-5H-C5I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" priority="500" constant="20" id="IgA-uL-KHs"/>
+                            <constraint firstItem="IrY-fg-6fj" firstAttribute="top" secondItem="zDo-kx-T0n" secondAttribute="bottom" constant="8" symbolic="YES" id="JJZ-la-4Tw"/>
+                            <constraint firstItem="zDo-kx-T0n" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="K8h-PQ-VQs"/>
+                            <constraint firstItem="4g3-5H-C5I" firstAttribute="top" secondItem="oRr-Ee-uPc" secondAttribute="bottom" constant="1" id="MSP-Yb-xmG"/>
+                            <constraint firstItem="zDo-kx-T0n" firstAttribute="top" secondItem="4g3-5H-C5I" secondAttribute="bottom" constant="8" symbolic="YES" id="OQ8-Ql-p7g"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oRr-Ee-uPc" secondAttribute="trailing" priority="500" constant="20" id="Wja-8A-ZGL"/>
+                            <constraint firstItem="oRr-Ee-uPc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" priority="500" constant="20" id="ZB3-Vm-5Ty"/>
+                            <constraint firstItem="oRr-Ee-uPc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="h4l-Qj-YF8"/>
+                            <constraint firstItem="4g3-5H-C5I" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hhP-8d-RYi"/>
+                            <constraint firstItem="IrY-fg-6fj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="yYE-F8-Qx5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Настройка игры" id="4Dl-sb-ogU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="918.84057971014499" y="88.392857142857139"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Y1G-xQ-tiR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2ie-l4-X0s" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nks-LO-hlT">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ES2-z6-Wlk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fZb-Jc-TjN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8.6956521739130448" y="88.392857142857139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
