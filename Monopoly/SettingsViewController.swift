@@ -14,6 +14,7 @@ class SettingsViewController: UIViewController {
     let settingsCellIdentifier = "SettingsCell"
     let settingsAddCellIdentifier = "AddNewSettingsItem"
     
+    var startMoney: Int64 = 1500
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +62,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
     
-        cell.setPlayer(player: DataModel.shared.getPlayer(atIndex: indexPath.row), indexPath: indexPath)
+        guard let player = DataModel.shared.getPlayer(atIndex: indexPath.row) else {return UITableViewCell()}
+        cell.setPlayer(player: player, indexPath: indexPath)
         cell.delegate = self
         return cell
     
@@ -81,7 +83,7 @@ extension SettingsViewController: SettingsCellDelegate {
     func nameDidChange(name: String, indexPath: IndexPath) {
         print(name)
         print(indexPath)
-        if DataModel.shared.modifyPlayerName(name: name, atIndex: indexPath.row) {
+        if DataModel.shared.modifyPlayer(name: name, money: nil, atIndex: indexPath.row) {
             print("modify successfully")
         }
         else {
@@ -94,7 +96,7 @@ extension SettingsViewController: SettingsCellDelegate {
         print(money)
         print(indexPath)
         let tempMoney = money as NSString
-        if DataModel.shared.modifyPlayerMoney(money: tempMoney.longLongValue, atIndex: indexPath.row) {
+        if DataModel.shared.modifyPlayer(name: nil, money: tempMoney.longLongValue, atIndex: indexPath.row) {
             print("modify successfully")
         }
         else {
@@ -107,7 +109,8 @@ extension SettingsViewController: SettingsCellDelegate {
 extension SettingsViewController: AddNewSettingsItemDelegate {
     func addNewSettingsItem() {
         print("add")
-        DataModel.shared.addCleanPlayer()
+        let player = Player(name: "", money: self.startMoney)
+        DataModel.shared.addPlayer(player: player)
         self.settingsTableView.reloadData()
     }
     
