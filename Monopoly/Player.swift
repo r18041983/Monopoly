@@ -10,5 +10,4 @@ import Foundation
 struct Player {
     var name: String
     var money: Int64
-    
 }
