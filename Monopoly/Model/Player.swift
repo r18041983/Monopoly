@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 struct Player {
     var name: String
     var money: Int64
+    var image: UIImage?
 }

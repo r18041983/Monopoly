@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct DataModel {
     static var shared = DataModel()
@@ -32,7 +33,7 @@ struct DataModel {
         playerArray.append(player)
     }
 
-    mutating func modifyPlayer(name: String?, money: Int64?, atIndex: Int) -> Bool {
+    mutating func modifyPlayer(name: String?, money: Int64?, image: UIImage?, atIndex: Int) -> Bool {
         if !isIndexTrue(index: atIndex) {
             return false
         }
@@ -43,6 +44,10 @@ struct DataModel {
         }
         if let money = money {
             self.playerArray[atIndex].money = money
+            changeFlag = true
+        }
+        if let image = image {
+            self.playerArray[atIndex].image = image
             changeFlag = true
         }
         return changeFlag

@@ -11,6 +11,7 @@ protocol SettingsCellDelegate {
     func nameDidChange(name: String, indexPath: IndexPath)
     func moneyDidChange(money: String, indexPath: IndexPath)
     func deleteItem(name: String, money: String, indexPath: IndexPath)
+    func pressOnImage(indexPath: IndexPath)
 }
 
 
@@ -19,14 +20,21 @@ class SettingsCellTableViewCell: UITableViewCell {
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var moneyTextField: UITextField!
     @IBOutlet var deleteItemButton: UIButton!
+    @IBOutlet var imageItem: UIImageView!
+    @IBOutlet var hiddenButtonOnImage: UIButton!
     
     var savedIndexPath: IndexPath?
     var delegate: SettingsCellDelegate?
+    
+    let placeholderImageName = "placeholder"
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.nameTextField.delegate = self
         self.moneyTextField.delegate = self
+        self.hiddenButtonOnImage.bringSubviewToFront(self.contentView)
+        self.hiddenButtonOnImage.backgroundColor = UIColor.clear
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -39,19 +47,30 @@ class SettingsCellTableViewCell: UITableViewCell {
         self.nameTextField.text = nil
         self.moneyTextField.text = nil
         self.savedIndexPath = nil
+        self.imageItem.image = nil
     }
     
     func setPlayer(player: Player, indexPath: IndexPath) {
         self.nameTextField.text = player.name
         self.moneyTextField.text = String(player.money)
+        if let image = player.image {
+            self.imageItem.image = image
+        }
+        else {
+            self.imageItem.image = UIImage(named: self.placeholderImageName)
+        }
         self.savedIndexPath = indexPath
     }
 
-    @IBAction func pressDeleteItemButton(button: UIButton){
-        guard let savedIndexPath = savedIndexPath else {return}
+    @IBAction func pressDeleteItemButton(button: UIButton) {
+        guard let savedIndexPath = self.savedIndexPath else {return}
         delegate?.deleteItem(name: nameTextField.text ?? "", money: moneyTextField.text ?? "", indexPath: savedIndexPath)
     }
-    
+ 
+    @IBAction func pressOverImageButton(button: UIButton) {
+        guard let savedIndexPath = self.savedIndexPath else {return}
+        delegate?.pressOnImage(indexPath: savedIndexPath)
+    }
 }
 
 extension SettingsCellTableViewCell: UITextFieldDelegate {
@@ -87,10 +106,5 @@ extension SettingsCellTableViewCell: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         modifyTextField(textField)
     }
-    
-//    - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   // return NO to not change text
-//
-//    - (void)textFieldDidChangeSelection:(UITextField *)textField API_AVAILABLE(ios(13.0), tvos(13.0));
-
-
+   
 }

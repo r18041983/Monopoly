@@ -13,6 +13,8 @@ class SettingsViewController: UIViewController {
     
     let settingsCellIdentifier = "SettingsCell"
     let settingsAddCellIdentifier = "AddNewSettingsItem"
+    let fromSettingsToImageSelectorSegue = "fromSettingsToImageSelector"
+    let placeholderImageName = "placeholder"
     
     var startMoney: Int64 = 1500
     
@@ -35,6 +37,28 @@ class SettingsViewController: UIViewController {
             self.settingsTableView?.endEditing(true)
     }
 
+    func formAvatarArray() -> [UIImage] {
+        var avatarArray = [UIImage]()
+        avatarArray.append(UIImage(named: "boat")!)
+        avatarArray.append(UIImage(named: "boots")!)
+        avatarArray.append(UIImage(named: "car")!)
+        avatarArray.append(UIImage(named: "cat")!)
+        avatarArray.append(UIImage(named: "dog")!)
+        avatarArray.append(UIImage(named: "hat")!)
+        avatarArray.append(UIImage(named: "naperstok")!)
+        avatarArray.append(UIImage(named: "tachka")!)
+        avatarArray.append(UIImage(named: "utug")!)
+        return avatarArray
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == self.fromSettingsToImageSelectorSegue {
+            guard let destination = segue.destination as? SelectImageController else {return}
+            guard let indexPath = sender as? IndexPath else {return}
+            destination.setParams(imagesToSelect: formAvatarArray(), indexPath: indexPath)
+            destination.delegate = self
+        }
+    }
 }
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -61,10 +85,13 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         {
             return UITableViewCell()
         }
-    
+        
         guard let player = DataModel.shared.getPlayer(atIndex: indexPath.row) else {return UITableViewCell()}
+        
+  
         cell.setPlayer(player: player, indexPath: indexPath)
         cell.delegate = self
+        
         return cell
     
     }
@@ -83,7 +110,7 @@ extension SettingsViewController: SettingsCellDelegate {
     func nameDidChange(name: String, indexPath: IndexPath) {
         print(name)
         print(indexPath)
-        if DataModel.shared.modifyPlayer(name: name, money: nil, atIndex: indexPath.row) {
+        if DataModel.shared.modifyPlayer(name: name, money: nil, image: nil, atIndex: indexPath.row) {
             print("modify successfully")
         }
         else {
@@ -96,12 +123,16 @@ extension SettingsViewController: SettingsCellDelegate {
         print(money)
         print(indexPath)
         let tempMoney = money as NSString
-        if DataModel.shared.modifyPlayer(name: nil, money: tempMoney.longLongValue, atIndex: indexPath.row) {
+        if DataModel.shared.modifyPlayer(name: nil, money: tempMoney.longLongValue, image: nil, atIndex: indexPath.row) {
             print("modify successfully")
         }
         else {
             print("modify failed")
         }
+    }
+    
+    func pressOnImage(indexPath: IndexPath) {
+        self.performSegue(withIdentifier: fromSettingsToImageSelectorSegue, sender: indexPath)
     }
 }
 
@@ -109,9 +140,24 @@ extension SettingsViewController: SettingsCellDelegate {
 extension SettingsViewController: AddNewSettingsItemDelegate {
     func addNewSettingsItem() {
         print("add")
-        let player = Player(name: "", money: self.startMoney)
+        let player = Player(name: "", money: self.startMoney, image: UIImage(named: self.placeholderImageName))
         DataModel.shared.addPlayer(player: player)
         self.settingsTableView.reloadData()
+    }
+
+    
+}
+
+
+extension SettingsViewController: SelectImageProtocol {
+    func imageSelected(image: UIImage, savedIndexPath: IndexPath) {
+        if DataModel.shared.modifyPlayer(name: nil, money: nil, image: image, atIndex: savedIndexPath.row) {
+            print("modify successfully")
+            self.settingsTableView.reloadData()
+        }
+        else {
+            print("modify failed")
+        }
     }
     
     
