@@ -9,10 +9,11 @@ import UIKit
 
 class CashViewController: UIViewController {
 
-    @IBOutlet weak var cashCollectionView: CashCollectionView!
+    @IBOutlet weak var cashCollectionView: UICollectionView!
     
     let reuseIdentifier = "reuseCashCellIdentifier"
     let numberCellsInRow = 2
+    let fromCashToSelectOperationSegue = "fromCashToSelectOperation"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,14 @@ class CashViewController: UIViewController {
     
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == self.fromCashToSelectOperationSegue {
+            guard let destination = segue.destination as? SelectOperationViewController else {return}
+            guard let indexPath = sender as? IndexPath else {return}
+            destination.savedIndexPath = indexPath
+            destination.delegate = self
+        }
+    }
 }
 
 
@@ -51,8 +59,12 @@ extension CashViewController: UICollectionViewDelegate, UICollectionViewDataSour
 // MARK: UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         guard let cell = collectionView.cellForItem(at: indexPath) as? AvatarCollectionViewCell else {return true}
-        let savedIndexPath = cell.savedIndexPath
+  //      let savedIndexPath = cell.savedIndexPath
         
+       //  let selectView = SelectOperation()//frame: CGRect(x: 1, y: 1, width: 150, height: 250))
+      
+       // self.view.addSubview(selectView)
+        performSegue(withIdentifier: fromCashToSelectOperationSegue, sender: cell.savedIndexPath)
         return true
     }
     
@@ -69,5 +81,12 @@ extension CashViewController: UICollectionViewDelegateFlowLayout {
         
         let size = ((collectionView.bounds.width - totalSpace) / CGFloat(numberCellsInRow))
         return CGSize(width: size, height: size)
+    }
+}
+
+
+extension CashViewController: SelectOperationDelegate {
+    func changesDone() {
+        self.cashCollectionView.reloadData()
     }
 }

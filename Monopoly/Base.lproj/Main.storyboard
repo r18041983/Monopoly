@@ -88,7 +88,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gav-Qh-sd6" customClass="CashCollectionView" customModule="Monopoly" customModuleProvider="target">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gav-Qh-sd6">
                                 <rect key="frame" x="0.0" y="88" width="414" height="744"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ic6-dK-YHv">
@@ -124,11 +124,136 @@
                     <navigationItem key="navigationItem" title="Касса" id="ta6-jq-MKy"/>
                     <connections>
                         <outlet property="cashCollectionView" destination="gav-Qh-sd6" id="FxG-wy-raU"/>
+                        <segue destination="DCw-oA-AdR" kind="presentation" identifier="fromCashToSelectOperation" id="Aan-vy-YXU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FV5-TZ-HjJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1855.072463768116" y="412.5"/>
+        </scene>
+        <!--Select Operation View Controller-->
+        <scene sceneID="unM-uC-Gzt">
+            <objects>
+                <viewController id="DCw-oA-AdR" customClass="SelectOperationViewController" customModule="Monopoly" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5w4-j4-OhF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="7Ek-4m-181">
+                                <rect key="frame" x="115.5" y="343" width="183" height="156"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeG-fO-D7g">
+                                        <rect key="frame" x="0.0" y="0.0" width="183" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                        <state key="normal" title="  Перевод игроку  "/>
+                                        <connections>
+                                            <action selector="pressTransferToPlayer:" destination="DCw-oA-AdR" eventType="touchUpInside" id="k8t-bK-PLk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ipu-Bc-o4E">
+                                        <rect key="frame" x="0.0" y="42" width="183" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                        <state key="normal" title="  Перевод в Банк  "/>
+                                        <connections>
+                                            <action selector="pressTransferToBank:" destination="DCw-oA-AdR" eventType="touchUpInside" id="zXS-U4-VxK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRC-DS-SKo">
+                                        <rect key="frame" x="0.0" y="84" width="183" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                        <state key="normal" title="  Перевод мне из Банка  "/>
+                                        <connections>
+                                            <action selector="pressTransferToMe:" destination="DCw-oA-AdR" eventType="touchUpInside" id="ey3-kI-qp2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8C-nU-Qdp">
+                                        <rect key="frame" x="0.0" y="126" width="183" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                        <state key="normal" title="  Перевод всем игрокам  "/>
+                                        <connections>
+                                            <action selector="pressTransferToAll:" destination="DCw-oA-AdR" eventType="touchUpInside" id="Ar8-xm-ggh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0k-zv-H2Q">
+                                <rect key="frame" x="301.5" y="305" width="30" height="30"/>
+                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="TAn-yV-BA5"/>
+                                    <constraint firstAttribute="width" constant="30" id="o3K-Cq-dKv"/>
+                                </constraints>
+                                <state key="normal" image="xmark" catalog="system"/>
+                                <connections>
+                                    <action selector="pressCloseButton:" destination="DCw-oA-AdR" eventType="touchUpInside" id="bZ7-Ts-Uwl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="wtL-Rj-xz5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="o0k-zv-H2Q" firstAttribute="leading" secondItem="7Ek-4m-181" secondAttribute="trailing" constant="3" id="Hgw-VJ-P2v"/>
+                            <constraint firstItem="7Ek-4m-181" firstAttribute="centerX" secondItem="5w4-j4-OhF" secondAttribute="centerX" id="NTz-rd-QfP"/>
+                            <constraint firstItem="7Ek-4m-181" firstAttribute="top" secondItem="o0k-zv-H2Q" secondAttribute="bottom" constant="8" symbolic="YES" id="eSX-JN-JF3"/>
+                            <constraint firstItem="7Ek-4m-181" firstAttribute="centerY" secondItem="5w4-j4-OhF" secondAttribute="centerY" id="yiY-Go-NJk"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="o0k-zv-H2Q" id="fsQ-Ry-qYv"/>
+                        <outlet property="transferToAll" destination="g8C-nU-Qdp" id="lJv-B7-sfy"/>
+                        <outlet property="transferToBank" destination="ipu-Bc-o4E" id="axs-hL-QYB"/>
+                        <outlet property="transferToMe" destination="dRC-DS-SKo" id="wpQ-7z-Yxn"/>
+                        <outlet property="transferToPlayer" destination="PeG-fO-D7g" id="j2S-em-aRY"/>
+                        <segue destination="Wgh-gF-3Y2" kind="presentation" identifier="fromSelectOperationToHowMoney" id="3kr-iM-u3q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pjt-D7-Cua" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2583" y="417"/>
+        </scene>
+        <!--How Money View Controller-->
+        <scene sceneID="deK-JL-7aW">
+            <objects>
+                <viewController id="Wgh-gF-3Y2" customClass="HowMoneyViewController" customModule="Monopoly" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3wN-fa-FuA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="200" borderStyle="roundedRect" textAlignment="center" minimumFontSize="20" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="B26-z0-PFJ">
+                                <rect key="frame" x="20" y="41" width="374" height="69.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vST-oe-kKn">
+                                <rect key="frame" x="0.0" y="135.5" width="414" height="109.5"/>
+                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <state key="normal" title="Готово"/>
+                                <connections>
+                                    <action selector="pressDoneButton:" destination="Wgh-gF-3Y2" eventType="touchUpInside" id="PRn-34-Z55"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="5GM-c2-lUT"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vST-oe-kKn" firstAttribute="leading" secondItem="5GM-c2-lUT" secondAttribute="leading" id="1tJ-hU-AgO"/>
+                            <constraint firstItem="5GM-c2-lUT" firstAttribute="trailing" secondItem="vST-oe-kKn" secondAttribute="trailing" id="3xZ-Y5-TRC"/>
+                            <constraint firstItem="vST-oe-kKn" firstAttribute="height" secondItem="B26-z0-PFJ" secondAttribute="height" constant="40" id="EoU-8T-iyW"/>
+                            <constraint firstItem="B26-z0-PFJ" firstAttribute="top" secondItem="5GM-c2-lUT" secondAttribute="top" constant="41" id="Q5p-MY-8Eo"/>
+                            <constraint firstItem="B26-z0-PFJ" firstAttribute="leading" secondItem="5GM-c2-lUT" secondAttribute="leading" constant="20" id="TWo-mn-jW7"/>
+                            <constraint firstItem="vST-oe-kKn" firstAttribute="top" secondItem="B26-z0-PFJ" secondAttribute="bottom" constant="25" id="a9h-Xp-3Pp"/>
+                            <constraint firstItem="5GM-c2-lUT" firstAttribute="trailing" secondItem="B26-z0-PFJ" secondAttribute="trailing" constant="20" id="zoh-sG-iDH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="doneButton" destination="vST-oe-kKn" id="8xT-5v-b9q"/>
+                        <outlet property="moneyTextField" destination="B26-z0-PFJ" id="3aU-Gf-ssd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O63-uQ-OTy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3434.7826086956525" y="412.5"/>
         </scene>
         <!--Select Image Controller-->
         <scene sceneID="lDP-vH-Vwt">
@@ -175,8 +300,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
