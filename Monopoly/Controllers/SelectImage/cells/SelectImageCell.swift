@@ -16,6 +16,10 @@ class SelectImageCell: UICollectionViewCell {
         // Initialization code
     }
 
+    override func prepareForReuse() {
+        self.image.image = nil
+    }
+    
     func setImageToCell(image: UIImage) {
         self.image.image = image
     }

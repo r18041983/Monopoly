@@ -32,6 +32,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r87-uM-mod">
                                         <rect key="frame" x="189" y="0.0" width="185" height="30"/>
                                         <state key="normal" title="Продолжить"/>
+                                        <connections>
+                                            <action selector="pressNextButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PyX-qx-NhD"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -70,11 +73,62 @@
                     <connections>
                         <outlet property="settingsTableView" destination="zDo-kx-T0n" id="fM5-Lv-Z9s"/>
                         <segue destination="7ct-R4-HK4" kind="presentation" identifier="fromSettingsToImageSelector" modalPresentationStyle="pageSheet" id="Y9U-Hk-QLx"/>
+                        <segue destination="Md8-dB-IMo" kind="show" identifier="fromSettingsToCash" id="FZg-v2-YHW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="918.84057971014499" y="88.392857142857139"/>
+        </scene>
+        <!--Касса-->
+        <scene sceneID="qgw-yb-ri2">
+            <objects>
+                <viewController id="Md8-dB-IMo" customClass="CashViewController" customModule="Monopoly" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yNM-Bl-Vd5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gav-Qh-sd6" customClass="CashCollectionView" customModule="Monopoly" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="414" height="744"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ic6-dK-YHv">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ACR-3p-iDY">
+                                <rect key="frame" x="0.0" y="832" width="414" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOa-bv-jPb">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                        <state key="normal" title="Сохранить"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Onx-tZ-Sro"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gav-Qh-sd6" firstAttribute="leading" secondItem="Onx-tZ-Sro" secondAttribute="leading" id="5Zf-x4-4tT"/>
+                            <constraint firstItem="ACR-3p-iDY" firstAttribute="top" secondItem="gav-Qh-sd6" secondAttribute="bottom" id="E81-VW-Qe4"/>
+                            <constraint firstItem="gav-Qh-sd6" firstAttribute="top" secondItem="Onx-tZ-Sro" secondAttribute="top" id="PCN-gG-Ip0"/>
+                            <constraint firstItem="Onx-tZ-Sro" firstAttribute="trailing" secondItem="ACR-3p-iDY" secondAttribute="trailing" id="Q3a-wC-klq"/>
+                            <constraint firstItem="ACR-3p-iDY" firstAttribute="leading" secondItem="Onx-tZ-Sro" secondAttribute="leading" id="q9K-xx-W3H"/>
+                            <constraint firstItem="Onx-tZ-Sro" firstAttribute="trailing" secondItem="gav-Qh-sd6" secondAttribute="trailing" id="ws4-hw-Wbf"/>
+                            <constraint firstItem="ACR-3p-iDY" firstAttribute="bottom" secondItem="Onx-tZ-Sro" secondAttribute="bottom" id="xVj-L9-XgU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Касса" id="ta6-jq-MKy"/>
+                    <connections>
+                        <outlet property="cashCollectionView" destination="gav-Qh-sd6" id="FxG-wy-raU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FV5-TZ-HjJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1855.072463768116" y="412.5"/>
         </scene>
         <!--Select Image Controller-->
         <scene sceneID="lDP-vH-Vwt">

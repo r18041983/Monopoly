@@ -14,6 +14,7 @@ class SettingsViewController: UIViewController {
     let settingsCellIdentifier = "SettingsCell"
     let settingsAddCellIdentifier = "AddNewSettingsItem"
     let fromSettingsToImageSelectorSegue = "fromSettingsToImageSelector"
+    let fromSettingsToCashSegue = "fromSettingsToCash"
     let placeholderImageName = "placeholder"
     
     var startMoney: Int64 = 1500
@@ -59,6 +60,12 @@ class SettingsViewController: UIViewController {
             destination.delegate = self
         }
     }
+
+    @IBAction func pressNextButton(sender: UIButton) {
+        performSegue(withIdentifier: fromSettingsToCashSegue, sender: self)
+    }
+
+
 }
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {

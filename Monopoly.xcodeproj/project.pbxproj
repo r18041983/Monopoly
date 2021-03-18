@@ -14,6 +14,10 @@
 		8F3A3FD22602470E00F2A1C9 /* SelectImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A3FD12602470E00F2A1C9 /* SelectImageController.swift */; };
 		8F3A3FD626024C1100F2A1C9 /* SelectImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A3FD426024C1100F2A1C9 /* SelectImageCell.swift */; };
 		8F3A3FD726024C1100F2A1C9 /* SelectImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F3A3FD526024C1100F2A1C9 /* SelectImageCell.xib */; };
+		8F3A3FE52603328900F2A1C9 /* CashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A3FE42603328800F2A1C9 /* CashViewController.swift */; };
+		8F3A3FE9260332B100F2A1C9 /* CashCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A3FE8260332B100F2A1C9 /* CashCollectionView.swift */; };
+		8F3A3FF12603335900F2A1C9 /* AvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A3FEF2603335900F2A1C9 /* AvatarCollectionViewCell.swift */; };
+		8F3A3FF22603335900F2A1C9 /* AvatarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F3A3FF02603335900F2A1C9 /* AvatarCollectionViewCell.xib */; };
 		8F43048725F79AE100D66D3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43048625F79AE100D66D3E /* AppDelegate.swift */; };
 		8F43048925F79AE100D66D3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43048825F79AE100D66D3E /* SceneDelegate.swift */; };
 		8F43048B25F79AE100D66D3E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43048A25F79AE100D66D3E /* SettingsViewController.swift */; };
@@ -32,6 +36,10 @@
 		8F3A3FD12602470E00F2A1C9 /* SelectImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageController.swift; sourceTree = "<group>"; };
 		8F3A3FD426024C1100F2A1C9 /* SelectImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageCell.swift; sourceTree = "<group>"; };
 		8F3A3FD526024C1100F2A1C9 /* SelectImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectImageCell.xib; sourceTree = "<group>"; };
+		8F3A3FE42603328800F2A1C9 /* CashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashViewController.swift; sourceTree = "<group>"; };
+		8F3A3FE8260332B100F2A1C9 /* CashCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashCollectionView.swift; sourceTree = "<group>"; };
+		8F3A3FEF2603335900F2A1C9 /* AvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewCell.swift; sourceTree = "<group>"; };
+		8F3A3FF02603335900F2A1C9 /* AvatarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F43048325F79AE100D66D3E /* Monopoly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monopoly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F43048625F79AE100D66D3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F43048825F79AE100D66D3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +75,8 @@
 		8F3A3FDB2602596D00F2A1C9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8F3A3FF526034A9D00F2A1C9 /* SelectOperation */,
+				8F3A3FE32603322D00F2A1C9 /* Cash */,
 				8F3A3FDA2602594300F2A1C9 /* Settings */,
 				8F3A3FDC2602597B00F2A1C9 /* SelectImage */,
 			);
@@ -109,6 +119,32 @@
 				8F3A3ECC25F7C44C00F2A1C9 /* Player.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		8F3A3FE32603322D00F2A1C9 /* Cash */ = {
+			isa = PBXGroup;
+			children = (
+				8F3A3FEB260332B800F2A1C9 /* cells */,
+				8F3A3FE42603328800F2A1C9 /* CashViewController.swift */,
+				8F3A3FE8260332B100F2A1C9 /* CashCollectionView.swift */,
+			);
+			path = Cash;
+			sourceTree = "<group>";
+		};
+		8F3A3FEB260332B800F2A1C9 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				8F3A3FEF2603335900F2A1C9 /* AvatarCollectionViewCell.swift */,
+				8F3A3FF02603335900F2A1C9 /* AvatarCollectionViewCell.xib */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		8F3A3FF526034A9D00F2A1C9 /* SelectOperation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SelectOperation;
 			sourceTree = "<group>";
 		};
 		8F43047A25F79AE100D66D3E = {
@@ -203,6 +239,7 @@
 				8F43049025F79AE600D66D3E /* Assets.xcassets in Resources */,
 				8F3A3ECA25F7BED200F2A1C9 /* AddNewSettingsItemCell.xib in Resources */,
 				8F43049F25F7A51C00D66D3E /* SettingsCellTableViewCell.xib in Resources */,
+				8F3A3FF22603335900F2A1C9 /* AvatarCollectionViewCell.xib in Resources */,
 				8F43048E25F79AE100D66D3E /* Main.storyboard in Resources */,
 				8F3A3FD726024C1100F2A1C9 /* SelectImageCell.xib in Resources */,
 			);
@@ -218,12 +255,15 @@
 				8F3A3FD626024C1100F2A1C9 /* SelectImageCell.swift in Sources */,
 				8F3A3ED025F7C4D000F2A1C9 /* DataModel.swift in Sources */,
 				8F43048B25F79AE100D66D3E /* SettingsViewController.swift in Sources */,
+				8F3A3FE52603328900F2A1C9 /* CashViewController.swift in Sources */,
 				8F43048725F79AE100D66D3E /* AppDelegate.swift in Sources */,
 				8F3A3EC925F7BED200F2A1C9 /* AddNewSettingsItemCell.swift in Sources */,
 				8F43049E25F7A51C00D66D3E /* SettingsCellTableViewCell.swift in Sources */,
 				8F3A3FD22602470E00F2A1C9 /* SelectImageController.swift in Sources */,
+				8F3A3FE9260332B100F2A1C9 /* CashCollectionView.swift in Sources */,
 				8F3A3ECD25F7C44C00F2A1C9 /* Player.swift in Sources */,
 				8F43048925F79AE100D66D3E /* SceneDelegate.swift in Sources */,
+				8F3A3FF12603335900F2A1C9 /* AvatarCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
