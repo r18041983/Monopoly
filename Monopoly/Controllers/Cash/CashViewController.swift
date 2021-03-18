@@ -12,7 +12,7 @@ class CashViewController: UIViewController {
     @IBOutlet weak var cashCollectionView: UICollectionView!
     
     let reuseIdentifier = "reuseCashCellIdentifier"
-    let numberCellsInRow = 2
+    let numberCellsInRow = 3
     let fromCashToSelectOperationSegue = "fromCashToSelectOperation"
     
     override func viewDidLoad() {

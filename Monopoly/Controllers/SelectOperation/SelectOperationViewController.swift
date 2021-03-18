@@ -29,6 +29,7 @@ class SelectOperationViewController: UIViewController {
     var howButton: HowButtonPressed = .toPlayer
     
     let fromSelectOperationToHowMoneySegue = "fromSelectOperationToHowMoney"
+    let fromSelectOperationToSelectImageSegue = "fromSelectOperationToSelectImage"
     var savedIndexPath = IndexPath()
     var delegate: SelectOperationDelegate?
     
@@ -44,9 +45,23 @@ class SelectOperationViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == fromSelectOperationToHowMoneySegue {
             let destination = segue.destination as! HowMoneyViewController
+            if let selectedIndexToSave = sender as? IndexPath {
+                destination.savedIndexPath = selectedIndexToSave
+            }
             destination.delegate = self
         }
         
+        if segue.identifier == fromSelectOperationToSelectImageSegue {
+            let destination = segue.destination as! SelectImageController
+            var tempArray = [Player]()
+            for index in 0...DataModel.shared.getPlayerArrayCount() {
+                if let player = DataModel.shared.getPlayer(atIndex: index) {
+                    tempArray.append(player)
+                }
+            }
+            destination.setParams(playersToSelect: tempArray, indexPath: IndexPath())
+            destination.delegate = self
+        }
     }
     
     
@@ -57,6 +72,7 @@ class SelectOperationViewController: UIViewController {
     
     @IBAction func pressTransferToPlayer(_ sender: UIButton) {
         self.howButton = .toPlayer
+        performSegue(withIdentifier: fromSelectOperationToSelectImageSegue, sender: self)
     }
     
     
@@ -83,9 +99,13 @@ class SelectOperationViewController: UIViewController {
 
 
 extension SelectOperationViewController: HowMoneyDelegate {
-    func moneyDone(howMoney: Int64) {
+    func moneyDone(howMoney: Int64, saveIndexPath: IndexPath?) {
         let player = DataModel.shared.getPlayer(atIndex: savedIndexPath.item)
         var playerMoney = (player?.money ?? 0)
+        
+        
+        
+        
         
         switch self.howButton {
         case .toBank:
@@ -102,14 +122,27 @@ extension SelectOperationViewController: HowMoneyDelegate {
                     playerMoney -= howMoney
                 }
             }
-        default:
-            print("default")
+        case .toPlayer:
+            if let index = saveIndexPath?.item, let toPlayer = DataModel.shared.getPlayer(atIndex: index) {
+                let toPlayerMoney = toPlayer.money + howMoney
+                let _ = DataModel.shared.modifyPlayer(name: nil, money: toPlayerMoney, image: nil, atIndex: index)
+                playerMoney -= howMoney
+            }
         }
         
         if DataModel.shared.modifyPlayer(name: nil, money: playerMoney, image: nil, atIndex: savedIndexPath.item) {
             print("Success modification")
         }
         self.dismiss(animated: true, completion: {self.delegate?.changesDone()})
+    }
+    
+    
+}
+
+
+extension SelectOperationViewController: SelectImageProtocol {
+    func imageSelected(image: UIImage, savedIndexPath: IndexPath, selectedIndex: IndexPath) {
+        performSegue(withIdentifier: self.fromSelectOperationToHowMoneySegue, sender: selectedIndex)
     }
     
     

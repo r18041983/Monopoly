@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HowMoneyDelegate {
-    func moneyDone(howMoney: Int64)
+    func moneyDone(howMoney: Int64, saveIndexPath: IndexPath?)
 }
 
 class HowMoneyViewController: UIViewController {
@@ -17,33 +17,21 @@ class HowMoneyViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     
     var delegate: HowMoneyDelegate?
-    
+    var savedIndexPath : IndexPath?
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.moneyTextField.becomeFirstResponder()
-        self.moneyTextField.delegate = self
         self.doneButton.layer.cornerRadius = 20
     }
     
     @IBAction func pressDoneButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: {
             if let money = self.moneyTextField.text {
-                self.delegate?.moneyDone(howMoney: Int64(money) ?? 0)
+                self.delegate?.moneyDone(howMoney: Int64(money) ?? 0, saveIndexPath: self.savedIndexPath)
             }
         })
     }
 
-    
-}
-
-extension HowMoneyViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        print()
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print()
-    }
-    
     
 }

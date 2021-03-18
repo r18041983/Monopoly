@@ -8,21 +8,21 @@
 import UIKit
 
 protocol SelectImageProtocol {
-    func imageSelected(image: UIImage, savedIndexPath: IndexPath)
+    func imageSelected(image: UIImage, savedIndexPath: IndexPath, selectedIndex: IndexPath)
 }
 
 private let reuseIdentifier = "reuseStandartCell"
 
 class SelectImageController: UICollectionViewController {
 
-    private var imagesArray = [UIImage]()
+    private var playersArray = [Player]()
     private let numberCellsInRow = 3
     private var savedIndexPath = IndexPath()
     
     var delegate : SelectImageProtocol?
     
-    func setParams(imagesToSelect : [UIImage], indexPath: IndexPath) {
-        self.imagesArray = imagesToSelect
+    func setParams(playersToSelect : [Player], indexPath: IndexPath) {
+        self.playersArray = playersToSelect
         self.savedIndexPath = indexPath
     }
     
@@ -42,7 +42,7 @@ class SelectImageController: UICollectionViewController {
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imagesArray.count
+        return playersArray.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -51,7 +51,12 @@ class SelectImageController: UICollectionViewController {
             return UICollectionViewCell()
             
         }
-        cell.setImageToCell(image: imagesArray[indexPath.item])
+        let player = playersArray[indexPath.item]
+        var imageToCell = UIImage(named: "placeholder")!
+        if let image = player.image {
+            imageToCell = image
+        }
+        cell.setDataToCell(image: imageToCell, name: player.name, indexPath: indexPath)
         return cell
     }
 
@@ -59,7 +64,10 @@ class SelectImageController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         guard let cell = collectionView.cellForItem(at: indexPath) as? SelectImageCell, let image = cell.getCellImage() else {return true}
-        self.dismiss(animated: true, completion: {self.delegate?.imageSelected(image: image, savedIndexPath: self.savedIndexPath)})
+        self.dismiss(animated: true,
+                     completion: {
+                        self.delegate?.imageSelected(image: image, savedIndexPath: self.savedIndexPath, selectedIndex: cell.savedIndexPath)
+                     })
         return true
     }
     

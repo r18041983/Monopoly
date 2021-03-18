@@ -206,6 +206,7 @@
                         <outlet property="transferToMe" destination="dRC-DS-SKo" id="wpQ-7z-Yxn"/>
                         <outlet property="transferToPlayer" destination="PeG-fO-D7g" id="j2S-em-aRY"/>
                         <segue destination="Wgh-gF-3Y2" kind="presentation" identifier="fromSelectOperationToHowMoney" id="3kr-iM-u3q"/>
+                        <segue destination="7ct-R4-HK4" kind="presentation" identifier="fromSelectOperationToSelectImage" id="9mV-Yd-fZV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pjt-D7-Cua" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -275,6 +276,7 @@
                             <outlet property="delegate" destination="7ct-R4-HK4" id="9C0-0Y-SjT"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" id="ysI-9J-iQp"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9LN-Dr-gyu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -299,6 +301,9 @@
             <point key="canvasLocation" x="8.6956521739130448" y="88.392857142857139"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="9mV-Yd-fZV"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">

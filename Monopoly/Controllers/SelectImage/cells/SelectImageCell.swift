@@ -10,6 +10,9 @@ import UIKit
 class SelectImageCell: UICollectionViewCell {
 
     @IBOutlet var image : UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    var savedIndexPath = IndexPath()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,13 +21,22 @@ class SelectImageCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         self.image.image = nil
+        self.nameLabel.text = ""
     }
     
-    func setImageToCell(image: UIImage) {
+    func setDataToCell(image: UIImage, name: String?, indexPath: IndexPath) {
         self.image.image = image
+        if let name = name {
+            self.nameLabel.text = name
+        }
+        self.savedIndexPath = indexPath
     }
     
     func getCellImage() -> UIImage? {
         return image.image
+    }
+
+    func getSavedIndexPath() -> IndexPath {
+        return savedIndexPath
     }
 }

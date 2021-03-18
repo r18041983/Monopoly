@@ -38,17 +38,16 @@ class SettingsViewController: UIViewController {
             self.settingsTableView?.endEditing(true)
     }
 
-    func formAvatarArray() -> [UIImage] {
-        var avatarArray = [UIImage]()
-        avatarArray.append(UIImage(named: "boat")!)
-        avatarArray.append(UIImage(named: "boots")!)
-        avatarArray.append(UIImage(named: "car")!)
-        avatarArray.append(UIImage(named: "cat")!)
-        avatarArray.append(UIImage(named: "dog")!)
-        avatarArray.append(UIImage(named: "hat")!)
-        avatarArray.append(UIImage(named: "naperstok")!)
-        avatarArray.append(UIImage(named: "tachka")!)
-        avatarArray.append(UIImage(named: "utug")!)
+    func formAvatarArray() -> [Player] {
+        var avatarArray = [Player]()
+        avatarArray.append(Player(name: "", money: 0, image: UIImage(named: "boat")!))
+        avatarArray.append(Player(name: "", money: 0, image: UIImage(named: "car")!))
+        avatarArray.append(Player(name: "", money: 0, image: UIImage(named: "cat")!))
+        avatarArray.append(Player(name: "", money: 0, image: UIImage(named: "dog")!))
+        avatarArray.append(Player(name: "", money: 0, image: UIImage(named: "hat")!))
+        avatarArray.append(Player(name: "", money: 0, image: UIImage(named: "naperstok")!))
+        avatarArray.append(Player(name: "", money: 0, image: UIImage(named: "tachka")!))
+        avatarArray.append(Player(name: "", money: 0, image: UIImage(named: "utug")!))
         return avatarArray
     }
     
@@ -56,7 +55,7 @@ class SettingsViewController: UIViewController {
         if segue.identifier == self.fromSettingsToImageSelectorSegue {
             guard let destination = segue.destination as? SelectImageController else {return}
             guard let indexPath = sender as? IndexPath else {return}
-            destination.setParams(imagesToSelect: formAvatarArray(), indexPath: indexPath)
+            destination.setParams(playersToSelect: formAvatarArray(), indexPath: indexPath)
             destination.delegate = self
         }
     }
@@ -157,7 +156,7 @@ extension SettingsViewController: AddNewSettingsItemDelegate {
 
 
 extension SettingsViewController: SelectImageProtocol {
-    func imageSelected(image: UIImage, savedIndexPath: IndexPath) {
+    func imageSelected(image: UIImage, savedIndexPath: IndexPath, selectedIndex: IndexPath) {
         if DataModel.shared.modifyPlayer(name: nil, money: nil, image: image, atIndex: savedIndexPath.row) {
             print("modify successfully")
             self.settingsTableView.reloadData()
