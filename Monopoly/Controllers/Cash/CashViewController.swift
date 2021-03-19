@@ -17,14 +17,13 @@ class CashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.cashCollectionView.delegate = self
         self.cashCollectionView.dataSource = self
-        
         self.cashCollectionView!.register(UINib(nibName: "AvatarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+        
         let flowLayout = self.cashCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.estimatedItemSize = .zero
-    
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -37,7 +36,7 @@ class CashViewController: UIViewController {
     }
 }
 
-
+// MARK:- UICollectionViewDelegate
 extension CashViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return DataModel.shared.getPlayerArrayCount()
@@ -56,21 +55,16 @@ extension CashViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
-// MARK: UICollectionViewDelegate
+// MARK:- UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         guard let cell = collectionView.cellForItem(at: indexPath) as? AvatarCollectionViewCell else {return true}
-  //      let savedIndexPath = cell.savedIndexPath
-        
-       //  let selectView = SelectOperation()//frame: CGRect(x: 1, y: 1, width: 150, height: 250))
-      
-       // self.view.addSubview(selectView)
         performSegue(withIdentifier: fromCashToSelectOperationSegue, sender: cell.savedIndexPath)
         return true
     }
     
     
 }
-
+// MARK:- UICollectionViewDelegateFlowLayout
 extension CashViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -84,7 +78,7 @@ extension CashViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-
+// MARK:- SelectOperationDelegate
 extension CashViewController: SelectOperationDelegate {
     func changesDone() {
         self.cashCollectionView.reloadData()

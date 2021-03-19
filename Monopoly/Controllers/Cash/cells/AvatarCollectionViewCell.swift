@@ -15,10 +15,8 @@ class AvatarCollectionViewCell: UICollectionViewCell {
     
     var savedIndexPath = IndexPath()
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         self.nameLabel.text = nil
         self.cashLabel.text = nil
         self.avatarImageView.image = nil
@@ -52,6 +50,5 @@ class AvatarCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    
     
 }

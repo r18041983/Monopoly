@@ -35,11 +35,9 @@ class SelectImageController: UICollectionViewController {
     }
 
 // MARK: UICollectionViewDataSource
-
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return playersArray.count

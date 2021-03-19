@@ -13,11 +13,7 @@ struct DataModel {
     private var playerArray = [Player]()
     
     private init() { }
-        
-    func getPlayerArray() -> [Player] {
-        return playerArray
-    }
-    
+
     func getPlayer(atIndex: Int) -> Player? {
         if atIndex < playerArray.count {
             return playerArray[atIndex]

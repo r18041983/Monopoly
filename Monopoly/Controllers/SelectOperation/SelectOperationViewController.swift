@@ -12,13 +12,13 @@ protocol SelectOperationDelegate {
 }
 
 class SelectOperationViewController: UIViewController {
-
+    
     @IBOutlet weak var transferToPlayer: UIButton!
     @IBOutlet weak var transferToBank: UIButton!
     @IBOutlet weak var transferToMe: UIButton!
     @IBOutlet weak var transferToAll: UIButton!
     @IBOutlet weak var closeButton: UIButton!
- 
+    
     enum HowButtonPressed {
         case toPlayer
         case toBank
@@ -64,48 +64,37 @@ class SelectOperationViewController: UIViewController {
         }
     }
     
-    
     @IBAction func pressCloseButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
-    
     
     @IBAction func pressTransferToPlayer(_ sender: UIButton) {
         self.howButton = .toPlayer
         performSegue(withIdentifier: fromSelectOperationToSelectImageSegue, sender: self)
     }
     
-    
     @IBAction func pressTransferToBank(_ sender: UIButton) {
         self.howButton = .toBank
         performSegue(withIdentifier: fromSelectOperationToHowMoneySegue, sender: self)
     }
-    
     
     @IBAction func pressTransferToMe(_ sender: UIButton) {
         self.howButton = .toMe
         performSegue(withIdentifier: fromSelectOperationToHowMoneySegue, sender: self)
     }
     
-    
     @IBAction func pressTransferToAll(_ sender: UIButton) {
         self.howButton = .toAll
         performSegue(withIdentifier: fromSelectOperationToHowMoneySegue, sender: self)
     }
     
- 
-
 }
 
-
+//MARK:- HowMoneyDelegate
 extension SelectOperationViewController: HowMoneyDelegate {
     func moneyDone(howMoney: Int64, saveIndexPath: IndexPath?) {
         let player = DataModel.shared.getPlayer(atIndex: savedIndexPath.item)
         var playerMoney = (player?.money ?? 0)
-        
-        
-        
-        
         
         switch self.howButton {
         case .toBank:
@@ -139,11 +128,10 @@ extension SelectOperationViewController: HowMoneyDelegate {
     
 }
 
-
+//MARK:- SelectImageProtocol
 extension SelectOperationViewController: SelectImageProtocol {
     func imageSelected(image: UIImage, savedIndexPath: IndexPath, selectedIndex: IndexPath) {
         performSegue(withIdentifier: self.fromSelectOperationToHowMoneySegue, sender: selectedIndex)
     }
-    
     
 }

@@ -14,11 +14,6 @@ class SelectImageCell: UICollectionViewCell {
     
     var savedIndexPath = IndexPath()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
     override func prepareForReuse() {
         self.image.image = nil
         self.nameLabel.text = ""
